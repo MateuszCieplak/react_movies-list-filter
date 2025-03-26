@@ -6,18 +6,15 @@ import moviesFromServer from './api/movies.json';
 export const App: React.FC = () => {
   const [query, setQuery] = useState('');
 
-  const handlerSearch: FormEventHandler = event => {
-    setQuery(event.target.value);
+  const handlerSearch: FormEventHandler = queryValue => {
+    setQuery(queryValue.target.value);
   };
 
-  const visibleMovies = moviesFromServer.filter(movie => {
-    if (
+  const visibleMovies = moviesFromServer.filter(
+    movie =>
       movie.title.toLowerCase().includes(query.toLowerCase().trim()) ||
-      movie.description.toLowerCase().includes(query.toLowerCase().trim())
-    ) {
-      return movie;
-    }
-  });
+      movie.description.toLowerCase().includes(query.toLowerCase().trim()),
+  );
 
   return (
     <div className="page">
